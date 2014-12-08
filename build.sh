@@ -62,6 +62,7 @@ cp /etc/resolv.conf ${instroot}/etc/resolv.conf
 rm ${instroot}/var/lib/rpm/*
 chroot ${instroot} /bin/rpm --initdb
 chroot ${instroot} /bin/rpm -ivh --justdb '/var/cache/yum/*/packages/*.rpm'
+rm -r ${instroot}/var/cache/yum/
 
 chroot ${instroot} sh -c 'echo "NETWORKING=yes" > /etc/sysconfig/network'
 
