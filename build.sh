@@ -53,7 +53,7 @@ yum \
     -y \
     --installroot=${instroot} \
     install \
-    centos-release yum iputils coreutils which curl
+    centos-release yum iputils coreutils which curl || echo "ignoring failed yum; $?"
 
 cp /etc/resolv.conf ${instroot}/etc/resolv.conf
 
