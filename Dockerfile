@@ -5,4 +5,4 @@ FROM scratch
 
 MAINTAINER Brian Lalor <blalor@bravo5.org> - ./build_centos.sh
 
-ADD centos49.tar.xz /
+ADD centos49.tar.gz /

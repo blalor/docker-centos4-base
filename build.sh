@@ -5,11 +5,9 @@ set -e -u -x
 ## execute in a Docker container to build the tarball
 ##   docker run --privileged -i -t -v $PWD:/srv centos:centos6 /srv/build.sh
 
-DEST_IMG="/srv/centos49.tar.xz"
+DEST_IMG="/srv/centos49.tar.gz"
 
 rm -f ${DEST_IMG}
-
-yum install -y xz
 
 instroot=$(mktemp -d)
 tmpyum=$(mktemp)
@@ -88,4 +86,5 @@ umount ${instroot}/proc
 rm -f ${instroot}/etc/resolv.conf
 
 ## xz gives the smallest size by far, compared to bzip2 and gzip, by like 50%!
-chroot ${instroot} tar -cf - . | xz > ${DEST_IMG}
+## … but somewhere along the line Docker stopped supporting it.
+chroot ${instroot} tar -czf - . > ${DEST_IMG}
