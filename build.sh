@@ -1,9 +1,12 @@
 #!/bin/bash
 
-set -e -u -x
-
 ## execute in a Docker container to build the tarball
 ##   docker run --privileged -i -t -v $PWD:/srv centos:centos6 /srv/build.sh
+
+# close stdin
+exec 0<&-
+
+set -e -u -x
 
 DEST_IMG="/srv/centos49.tar.gz"
 
